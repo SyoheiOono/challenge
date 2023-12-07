@@ -19,6 +19,10 @@ public:
 	UPROPERTY(VisibleAnywhere)
 	UStaticMeshComponent* VisualMesh;
 
+	float FloatSpeed = 20.0f;
+
+	float RotateSpeed = 20.0f;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
