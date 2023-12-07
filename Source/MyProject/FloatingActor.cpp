@@ -32,7 +32,28 @@ void AFloatingActor::BeginPlay()
 		VisualMesh->SetRelativeLocation(FVector(0.0f, 0.0f, 0.0f));
 	}
 
-	
+	//アクタの位置を取得
+	FVector NewLocation = GetActorLocation();
+
+	//現在の高さを算出
+	float RunningTime = GetGameTimeSinceCreation();
+	float DeltaHeight = (FMath::Sin(RunningTime + DeltaTime) - FMath::Sin(RunningTime));
+
+	//Z(高さ)を設定
+	NewLocation.Z += DeltaHeight * 20.0f; // Scale20
+
+	//アクタの位置へ設定
+	SetActorLocation(NewLocation);
+
+	//Location確定
+	NewLocation.Z += DeltaHeight * 20.0f;
+
+	//Rotation確定
+	float DeltaRotation = DeltaTime * 20.0f;
+	NewRotation.Yaw += DeltaRotation;
+
+	UPROPERTY(EditAnywhere, BuleprintReadWrite, Category = "FloatingProperty")
+	float FloatSpped = 20.0f;
 }
 
 // Called every frame
